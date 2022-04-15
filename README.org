@@ -1,0 +1,146 @@
+#+TITLE: Laboratório de Inteligência Artificial
+
+* Integrantes
+- Lucas Martins Soares
+- Vitor Martins Soares
+
+* Lista de Exercícios
+
+** Repositório
+
+#+BEGIN_SRC
+  git clone https://github.com/lucasmsoares96/Inteligncia-Artificial.git
+#+END_SRC
+
+** Video
+[[https://youtu.be/hVy9JWQHx2c]]
+
+** PEAS
+- Type:
+  - Aspirador de pó
+- Performance:
+  - o aspirador ganha um ponto se no fim de cada execução o ambiente estiver completamente limpo.
+- Environment:
+  - sala A e sala B
+- Actuators:
+  - rodas para locomoção
+  - mecanismo de sucção
+- Sensors:
+  - sensor de sugeira
+    
+** Algoritmo do Aspirador
+#+BEGIN_SRC python
+  def reflex_vacuum_agent(location, status):
+    if status == "dirty":
+        return "suck"
+    elif location == "a":
+        return "right"
+    elif location == "b":
+        return "left"
+    return "fail"
+
+
+##local atual, valor local a, valor local b
+scenes = [
+    ["a", "dirty", "dirty"],
+    ["a", "dirty", "clean"],
+    ["a", "clean", "dirty"],
+    ["a", "clean", "clean"],
+    ["b", "dirty", "dirty"],
+    ["b", "dirty", "clean"],
+    ["b", "clean", "dirty"],
+    ["b", "clean", "clean"],
+]
+
+pontos = 0
+for i in range(8):
+    print(str(i + 1) + "ª Configuracao")
+    if scenes[i][0] == "a":
+        current = 1
+    elif scenes[i][0] == "b":
+        current = 2
+    for j in range(5):
+        print(scenes[i])
+        result = reflex_vacuum_agent(scenes[i][0], scenes[i][current])
+        if result == "suck":
+            scenes[i][current] = "clean"
+        elif result == "right":
+            current = 2
+        elif result == "left":
+            current = 1
+    print(scenes[i])
+    if scenes[i][1] == "clean" and scenes[i][2] == "clean":
+        print("+1 ponto")
+        pontos = +pontos + 1
+
+print("total de pontos: ", pontos)
+#+END_SRC
+
+** Resultado
+#+BEGIN_SRC
+  1ª Configuracao
+['a', 'dirty', 'dirty']
+['a', 'clean', 'dirty']
+['a', 'clean', 'dirty']
+['a', 'clean', 'clean']
+['a', 'clean', 'clean']
+['a', 'clean', 'clean']
++1 ponto
+2ª Configuracao
+['a', 'dirty', 'clean']
+['a', 'clean', 'clean']
+['a', 'clean', 'clean']
+['a', 'clean', 'clean']
+['a', 'clean', 'clean']
+['a', 'clean', 'clean']
++1 ponto
+3ª Configuracao
+['a', 'clean', 'dirty']
+['a', 'clean', 'dirty']
+['a', 'clean', 'clean']
+['a', 'clean', 'clean']
+['a', 'clean', 'clean']
+['a', 'clean', 'clean']
++1 ponto
+4ª Configuracao
+['a', 'clean', 'clean']
+['a', 'clean', 'clean']
+['a', 'clean', 'clean']
+['a', 'clean', 'clean']
+['a', 'clean', 'clean']
+['a', 'clean', 'clean']
++1 ponto
+5ª Configuracao
+['b', 'dirty', 'dirty']
+['b', 'dirty', 'clean']
+['b', 'dirty', 'clean']
+['b', 'clean', 'clean']
+['b', 'clean', 'clean']
+['b', 'clean', 'clean']
++1 ponto
+6ª Configuracao
+['b', 'dirty', 'clean']
+['b', 'dirty', 'clean']
+['b', 'clean', 'clean']
+['b', 'clean', 'clean']
+['b', 'clean', 'clean']
+['b', 'clean', 'clean']
++1 ponto
+7ª Configuracao
+['b', 'clean', 'dirty']
+['b', 'clean', 'clean']
+['b', 'clean', 'clean']
+['b', 'clean', 'clean']
+['b', 'clean', 'clean']
+['b', 'clean', 'clean']
++1 ponto
+8ª Configuracao
+['b', 'clean', 'clean']
+['b', 'clean', 'clean']
+['b', 'clean', 'clean']
+['b', 'clean', 'clean']
+['b', 'clean', 'clean']
+['b', 'clean', 'clean']
++1 ponto
+total de pontos:  8
+#+END_SRC
