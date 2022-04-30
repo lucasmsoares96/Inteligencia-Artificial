@@ -1,0 +1,73 @@
+#+TITLE: Laboratório de Inteligência Artificial
+#+AUTHOR: Lucas Martins Soares
+
+* Lista 2
+
+** Integrantes
+- Lucas Martins Soares
+- Vitor Martins Soares
+
+** Lista de Exercícios
+- Um simples agente reativo pode ser perfeitamente racional para este ambiente? Explique.
+  - Não. Para que um agente seja racional, ele deve ser capaz de decidir qual ação irá maximizar o seu desempenho. Porém, nessa situação o aspirador de pó não armazena os estados anteriores, e com isso não leva em consideração a penalização.
+- Caso sua resposta para o item anterior foi NÃO - implemente um agente reativo com estado.
+
+
+*** Video
+
+[[https://youtu.be/u7zEoc_V_lo]]
+
+*** Repositório
+
+#+BEGIN_SRC
+  git clone https://github.com/lucasmsoares96/Inteligncia-Artificial.git
+#+END_SRC
+    
+*** Algoritmo do Aspirador
+
+[[file:AspiradorDePó_ComEstado.py]]
+
+*** Resultado
+#+BEGIN_SRC
+  1a Configuracao
+['a', 'dirty', 'dirty']
+['a', 'clean', 'dirty']
+['b', 'clean', 'dirty']
+['b', 'clean', 'clean']
+3
+2a Configuracao
+['a', 'dirty', 'clean']
+['a', 'clean', 'clean']
+['b', 'clean', 'clean']
+1
+3a Configuracao
+['a', 'clean', 'dirty']
+['b', 'clean', 'dirty']
+['b', 'clean', 'clean']
+1
+4a Configuracao
+['a', 'clean', 'clean']
+['b', 'clean', 'clean']
+-1
+5a Configuracao
+['b', 'dirty', 'dirty']
+['b', 'dirty', 'clean']
+['a', 'dirty', 'clean']
+['a', 'clean', 'clean']
+3
+6a Configuracao
+['b', 'dirty', 'clean']
+['a', 'dirty', 'clean']
+['a', 'clean', 'clean']
+1
+7a Configuracao
+['b', 'clean', 'dirty']
+['b', 'clean', 'clean']
+['a', 'clean', 'clean']
+1
+8a Configuracao
+['b', 'clean', 'clean']
+['a', 'clean', 'clean']
+-1
+('total de pontos: ', 8)
+#+END_SRC
