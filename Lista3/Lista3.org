@@ -1,0 +1,139 @@
+#+TITLE: Capítulo 3 - Resolução de Problemas por Meio de Busca
+#+OPTIONS: toc:t
+
+
+* Índice :TOC:
+- [[#integrantes][Integrantes:]]
+- [[#1-missionários-e-canibais][1. Missionários e Canibais]]
+  - [[#a][a]]
+  - [[#b][b]]
+  - [[#c][c]]
+- [[#2-aspirador-de-pós][2. Aspirador de Pós]]
+  - [[#a-1][a]]
+  - [[#b-1][b]]
+  - [[#c-1][c]]
+  - [[#d][d]]
+  - [[#e][e]]
+
+* Integrantes:
+
+- Lucas Martin Soares
+- Vitor Martins Soares
+
+
+* 1. Missionários e Canibais
+
+
+** a
+
+A manipulação dos valores estão divididos em quantidade de missínarios, canibais do lado direito e lado em que o barco está atualmente. Exemplo: (2,2,Esquerda).
+
+- Estado Inicial: (3,3,direita)
+- Estado de meta: (0,0,esquerda) ou (0,0,direita)
+- Função de custo: 1
+- Função Sucessoras:
+  - M,C,Lado
+  - ACTIONS(3,3,direita) = {go(2,2,esquerda),go(3,1,esquerda),(3,2,esquerda)}
+  - ACTIONS(2,2,esquerda) = {go(3,2,direita)}
+  - ACTIONS(3,1,esquerda) = {go(3,2,direita)}
+  - ACTIONS(3,2,esquerda) = {}
+  - ACTIONS(3,2,direita) = {go(3,0,esquerda)}
+  - ACTIONS(3,1,direita) = {go(1,1,esquerda)}
+  - ACTIONS(1,1,esquerda) = {go(2,2,direita)}
+  - ACTIONS(2,2,direita) = {go(0,2,esquerda)}
+  - ACTIONS(0,2,esquerda) = {go(0,3,direita)}
+  - ACTIONS(0,3,direita) = {go(0,1,esquerda)}
+  - ACTIONS(0,1,esquerda) = {go(0,2,direita),go(1,1,direita)}
+  - ACTIONS(0,2,direita) = {go(0,0,esquerda)}
+  - ACTIONS(1,1,direita) = {go(0,0,esquerda)}
+
+[[file:canibais_missionarios.py][Código: Canibais e Missionários]]
+
+[[file:arvoremissionarios.png]]
+
+
+** b
+
+Não. Porque durante a modelagem do problema, os estados redundantes que gerariam loops foram desconsiderados. Portanto podemos optar por um algoritmo de buca em árvore que possui um consumo de memória menor do que o de busca em grafo.
+
+** c
+Apesar de ser um problema de fácil modelagem computacional, devido aos seus poucos estados únicos, possui muitos estados repetidos. Com isso o jogador acaba por retornar à estados anteriores sem avançar na solução do problema.
+
+* 2. Aspirador de Pós
+
+- Para executar, rode o seguinte comando:
+
+  #+begin_src 
+    python3 comparacao.py 
+  #+end_src
+
+** a
+- Qual algorítmo?
+  - Nesse problema, como a meta é os dois ambientes estarem limpos, podemos utilizar qualquer algoritmo que seja completo. Portanto o algoritmo de busca em largura (BFS) em grafo seria apropriado.
+- Árvore ou Grafo?
+  - Devido ao espaço de estados do problema permitir estados redundantes, a melhor forma de evitar esses caminhos na árvore de busca é realizar uma busca em grafo. Isso se deve ao fato de que a busca em grafo armazena e consulta o conjunto de estados já explorados.
+
+** b
+
+[[file:aplicacao_busca.py][Código: Aplicação do Algoritmo de Busca]]
+
+#+begin_src 
+>>> Algoritmo de Busca
+
+(
+    ((1, 0), (1, 0), (1, 0)),
+    ((0, 0), (0, 1), (0, 0)),
+    ((0, 0), (0, 0), (0, 0)),
+)
+
+['UP', 'LEFT', 'SUCK', 'RIGHT', 'SUCK', 'RIGHT', 'SUCK']
+Custo da Busca:    7
+
+#+end_src
+
+
+** c
+
+[[file:agente_busca.py][Código: Agente de Busca]]
+
+
+#+begin_src 
+>>> Agente de Busca
+(
+    ((0, 0), (0, 0), (0, 0)),
+    ((1, 0), (1, 0), (1, 0)),
+    ((0, 0), (1, 0), (0, 1)),
+)
+
+['UP', 'SUCK', 'DOWN', 'LEFT', 'SUCK', 'UP', 'SUCK', 'LEFT', 'SUCK']
+Custo da Busca:    9
+Custo do Caminho:  5
+Desempenho:        35
+#+end_src
+
+
+** d
+[[file:agente_aleatorio.py][Código: Agente Aleatório]]
+
+[[file:comparacao.py][Código: Comparação]]
+
+#+begin_src 
+(
+    ((0, 0), (0, 0), (0, 0)),
+    ((1, 0), (1, 0), (1, 0)),
+    ((0, 0), (1, 0), (0, 1)),
+)
+>>> Agente de Aleatorio
+
+['RIGHT', 'RIGHT', 'DOWN', 'LEFT', 'SUCK', 'UP', 'SUCK', 'LEFT', 'SUCK', 'UP', 'DOWN', 'UP', 'LEFT', 'RIGHT', 'UP', 'DOWN', 'DOWN', 'UP', 'LEFT', 'RIGHT', 'UP', 'LEFT', 'DOWN', 'RIGHT', 'LEFT', 'DOWN', 'UP', 'RIGHT', 'UP', 'LEFT', 'DOWN', 'DOWN', 'UP', 'LEFT', 'DOWN', 'LEFT', 'RIGHT', 'RIGHT', 'RIGHT', 'UP', 'SUCK']
+Custo do Caminho:  37
+Desempenho:        3
+#+end_src
+
+Definimos como métrica de desempenho, 10 pontos quando o agente limpa um ambiente e -1 ponto quando o agente se move.
+
+Para um mesmo estado inicial, podemos ver que o agente que utiliza um algoritmo de busca antes de iniciar a sua execução, atinge um desempenho muito superior ao agente aleatório
+
+** e
+
+Ao se expandir a quantidade de ambiente para $n \times n$ a diferença de performance será cada vez maior dado que o agente de busca sempre encontrará o caminho ótimo e o aleatório tomara um caminho não ótimo

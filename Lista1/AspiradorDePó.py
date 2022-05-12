@@ -22,7 +22,7 @@ scenes = [
 
 pontos = 0
 for i in range(8):
-    print(str(i + 1) + "ª Configuracao")
+    print(str(i + 1) + "a Configuracao")
     if scenes[i][0] == "a":
         current = 1
     elif scenes[i][0] == "b":

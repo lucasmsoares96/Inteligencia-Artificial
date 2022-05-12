@@ -7,9 +7,6 @@
 
 * Lista de Exercícios
 
-** Video
-[[https://youtu.be/hVy9JWQHx2c]]
-
 ** PEAS
 - Type:
   - Aspirador de pó
@@ -23,9 +20,12 @@
 - Sensors:
   - sensor de sugeira
     
+** Video
+[[https://youtu.be/hVy9JWQHx2c]]
+
 ** Algoritmo do Aspirador
 
-[[file:AspiradorDePó.py]]
+[[file:AspiradorDePó.py][Aspirado de Pó]]
 
 ** Resultado
 #+BEGIN_SRC

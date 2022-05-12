@@ -1,5 +1,4 @@
 #+TITLE: Laboratório de Inteligência Artificial
-#+AUTHOR: Lucas Martins Soares
 
 
 * Repositório
@@ -8,5 +7,8 @@
 
 * Listas de Exercícios
 
-- [[file:Lista1.org][Lista1]]
-- [[file:Lista2.org][Lista2]]
+- [[file:Lista1/Lista1.org][Lista1]]
+- [[file:Lista2/Lista2.org][Lista2]]
+- [[file:Lista3/Lista3.org][Lista3]]
+
+  
