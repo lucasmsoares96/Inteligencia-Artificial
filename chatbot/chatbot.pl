@@ -127,14 +127,11 @@ dataEHora(Op,T,R) :-
                 (
                     (
                         dias(D),write("Informe a hora desejada \"hh:mm\"\n"),
-                        nl,read(H),
+                        nl,read(H),(horarios(H); writeln("Horario invalido, apenas de 7 as 23 e horas inteiras!"),dataEHora(Op,T,R)),
                         (
-                            horarios(H),
-                            (
-                                ((Op =:= 1), agendar(T,R,D,H));
-                                ((Op =:= 3), cancelar(T,R,D,H))
-                            )
-                        );(write("Horario invalido, apenas de 7 as 23 e horas inteiras!"),dataEHora(Op,T,R))
+                            ((Op =:= 1), agendar(T,R,D,H));
+                            ((Op =:= 3), cancelar(T,R,D,H))
+                        )
                     );(write("Data ainda não cadastrada, apenas datas 1 mes após este!"),dataEHora(Op,T,R))
                 ).
 
