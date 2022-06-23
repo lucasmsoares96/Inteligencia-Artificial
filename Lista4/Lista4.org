@@ -1,0 +1,116 @@
+#+TITLE: Prolog
+
+*** Integrantes
+- Lucas Martins Soares
+- Vitor Martins Soares
+*** Base de Conhecimento
+
+[[file:familia.drawio.svg]]
+progenitor(pai,filho)
+#+begin_src prolog
+progenitor(joao,joaquim).
+progenitor(joao,serafina).
+progenitor(joana,joaquim).
+progenitor(joana,serafina).
+progenitor(serafina,maria).
+progenitor(serafina,ana).
+progenitor(joaquim,marcelino).
+progenitor(marcelino,aristides).
+progenitor(maria,aristides).
+#+end_src
+
+sexo(pessoa,sexo)
+#+begin_src prolog
+sexo(serafina,feminino).
+sexo(joana,feminino).
+sexo(maria,feminino).
+sexo(ana,feminino).
+sexo(joao,masculino).
+sexo(joaquim,masculino).
+sexo(aristides,masculino).
+sexo(marcelino,masculino).
+#+end_src
+
+*** Relações
+irmã(irma,irmao)
+#+begin_src prolog
+irma(X,Y) :- progenitor(Z,X),progenitor(Z,Y),sexo(X,feminino),(X \== Y).
+irmao(X,Y) :- progenitor(Z,X),progenitor(Z,Y),sexo(X,masculino),(X \== Y).
+#+end_src
+
+descendente(descendente,ascendente)
+#+begin_src prolog
+descendente(X,Y) :- progenitor(Y,X).
+descendente(X,Y) :- progenitor(W,X),descendente(W,Y).
+#+end_src
+
+pais(pai, filho)
+#+begin_src prolog
+mae(X,Y) :- progenitor(X,Y),sexo(X,feminino).
+pai(X,Y) :- progenitor(X,Y),sexo(X,masculino).
+#+end_src
+
+avo(avo,neto)
+#+begin_src prolog
+avo(X,Y) :- progenitor(X,W),progenitor(W,Y).
+#+end_src
+
+tio(tio,sobrinho)
+#+begin_src prolog
+tio(X,Y) :- progenitor(W,Y),irmao(X,W).
+#+end_src
+
+primo(primo,primo)
+#+begin_src prolog
+primo(X,Y) :- tio(Z,X),progenitor(Z,Y).
+#+end_src
+
+*** Consultas
+1. O Joaquim é filho do José?
+   #+begin_src prolog
+   ?- progenitor(jose,joaquim).
+   false.
+   #+end_src
+2. Quem são os filhos da Joana?
+   #+begin_src prolog
+   ?- progenitor(joana,X).
+   X = joaquim ;
+   X = serafina.
+   #+end_src
+3. Quem são os primos do Marcelino?
+   #+begin_src prolog
+   ?- primo(marcelino,X).
+   X = maria ;
+   X = ana ;
+   X = maria ;
+   X = ana ;
+   false.
+   #+end_src
+4. Quantos sobrinhos/sobrinhas com um Tio existem?
+   #+begin_src prolog
+   ?- findall(X,tio(_,X),Y), sort(Y,A),length(A,B).
+   Y = [maria, maria, ana, ana],
+   A = [ana, maria],
+   B = 2.  
+   #+end_src
+5. Quem são os ascendentes do Aristides?
+   #+begin_src prolog
+   ?- descendente(aristides,X).
+   X = marcelino ;
+   X = maria ;
+   X = joaquim ;
+   X = joao ;
+   X = joana ;
+   X = serafina ;
+   X = joao ;
+   X = joana ;
+   false.
+   #+end_src
+6. A Maria tem irmãos? E irmãs?
+   #+begin_src prolog
+   ?- irma(maria,_).
+   true.
+   
+   ?- irmao(maria,_).
+   false.
+   #+end_src

@@ -9,7 +9,6 @@
   - Não. Para que um agente seja racional, ele deve ser capaz de decidir qual ação irá maximizar o seu desempenho. Porém, nessa situação o aspirador de pó não armazena os estados anteriores, e com isso não leva em consideração a penalização.
 - Caso sua resposta para o item anterior foi NÃO - implemente um agente reativo com estado.
 
-
 ** Video
 
 [[https://youtu.be/u7zEoc_V_lo]]

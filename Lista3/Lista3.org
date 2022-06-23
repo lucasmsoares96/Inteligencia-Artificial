@@ -2,23 +2,14 @@
 #+OPTIONS: toc:t
 
 
-* Índice :TOC:
-- [[#integrantes][Integrantes:]]
-- [[#1-missionários-e-canibais][1. Missionários e Canibais]]
-  - [[#a][a]]
-  - [[#b][b]]
-  - [[#c][c]]
-- [[#2-aspirador-de-pós][2. Aspirador de Pós]]
-  - [[#a-1][a]]
-  - [[#b-1][b]]
-  - [[#c-1][c]]
-  - [[#d][d]]
-  - [[#e][e]]
-
 * Integrantes:
 
 - Lucas Martin Soares
 - Vitor Martins Soares
+
+* Repositório
+
+[[https://github.com/lucasmsoares96/Inteligncia-Artificial.git]]
 
 
 * 1. Missionários e Canibais

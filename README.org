@@ -1,14 +1,14 @@
-#+TITLE: LaboratÃ³rio de InteligÃªncia Artificial
+#+TITLE: Laboratório de Inteligência Artificial
 
 
-* RepositÃ³rio
+* Repositório
 
 [[https://github.com/lucasmsoares96/Inteligncia-Artificial.git]]
 
-* Listas de ExercÃ­cios
+* Listas de Exercícios
 
 - [[file:Lista1/Lista1.org][Lista1]]
 - [[file:Lista2/Lista2.org][Lista2]]
 - [[file:Lista3/Lista3.org][Lista3]]
-
-  
+- [[file:Lista4/Lista4.org][Lista4]]
+- [[file:chatbot/README.org][Chatbot]]

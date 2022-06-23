@@ -18,7 +18,7 @@
   - rodas para locomoção
   - mecanismo de sucção
 - Sensors:
-  - sensor de sugeira
+  - sensor de sujeira
     
 ** Video
 [[https://youtu.be/hVy9JWQHx2c]]
