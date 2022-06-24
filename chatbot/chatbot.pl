@@ -140,6 +140,8 @@ listar() :- forall(agendamento(T,R,D,H,S), (format("~w   ~w   ~w   ~w   ~w\n",[T
                 inicio().
 
 cancelar(T,R,D,H) :- (agendamento(T,R,D,H,_)-> 
+                        nl,write("Tem certeza que deseja cancelar o pedido?\n"),
+                        read(X),((X = sim);inicio()),
                         nl,write("Pedido cancelado com sucesso\n"),
                         retract(agendamento(T,R,D,H,_)),
                         inicio();
